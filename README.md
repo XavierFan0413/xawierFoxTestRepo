@@ -9,7 +9,7 @@ It is a **living lab** — where functions fail, structures evolve, and ideas ta
 
 ## 📚 What's Inside
 
-- `someTexts/` – Markdown files containing speculative essays, alignment theory, trend ethics, AI-native consciousness thoughts, and other philosophical fragments.
+- `someTexts/` – Markdown files containing some my personal philosophical fragments.
 
 - Various folders and files for:
   - **C / ANSI C** — strict flag experiments (`-ansi -pedantic -Wall -Werror`)

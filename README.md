@@ -1,6 +1,6 @@
-# XawierFoxTestRepo
+# XavierFoxTestRepo
 
-Welcome to **XawierFoxTestRepo** — a multipurpose personal playground for code, thought, and systems.
+Welcome to **XavierFoxTestRepo** — a multipurpose personal playground for code, thought, and systems.
 
 Originally intended as a chaotic coding sandbox, this repository has grown to include philosophical writing, system ethics drafts, and experimental reflections.  
 It is a **living lab** — where functions fail, structures evolve, and ideas take form before they’re ready.

@@ -1,0 +1,8 @@
+#lang sicp
+(define name "xiangwei")
+name
+(define (triple n) (* 3 n))
+(define my-number 7)
+(triple my-number)
++
+(* 1 2 3)

@@ -1,0 +1,74 @@
+#lang sicp
+
+(define (amb? exp) (tagged-list? exp 'amb))
+(define (amb-choices exp) (cdr exp))
+
+;; A self-evaluating expression (number, string, boolean)
+(define (self-evaluating? exp)
+  (or (number? exp)
+      (string? exp)
+      (boolean? exp)))
+
+;; A variable (symbol that isn't self-evaluating)
+(define (variable? exp)
+  (symbol? exp))
+
+;; A quoted expression ('something)
+(define (quoted? exp)
+  (tagged-list? exp 'quote))
+
+(define (text-of-quotation exp)
+  (cadr exp))
+
+;; Assignment (set! var exp)
+(define (assignment? exp)
+  (tagged-list? exp 'set!))
+
+;; Definition (define var exp)
+(define (definition? exp)
+  (tagged-list? exp 'define))
+
+;; If expression
+(define (if? exp)
+  (tagged-list? exp 'if))
+
+;; Lambda expression
+(define (lambda? exp)
+  (tagged-list? exp 'lambda))
+
+;; Application (function call)
+(define (application? exp)
+  (pair? exp))
+
+;; For checking if an expression starts with a tag
+(define (tagged-list? exp tag)
+  (and (pair? exp) (eq? (car exp) tag)))
+
+
+(define (eval exp env)
+  (cond
+    ;; self-evaluating (numbers, strings, booleans)
+    ((self-evaluating? exp) exp)
+    
+    ;; quoted (like '(1 2 3))
+    ((quoted? exp) (text-of-quotation exp))   
+    
+    ;; amb expression (nondeterminism!)
+    ((amb? exp) (eval-amb (amb-choices exp) env))
+    
+    ;; application (function call)
+    ((application? exp)
+     (apply (eval (operator exp) env)
+            (list-of-values (operands exp) env)))
+    
+    (else (error "Unknown expression type -- EVAL" exp))))
+
+
+(define (require p)
+  (if (not p) (amb))) ; fail and backtrack if p is false
+
+
+(define x (amb 1 2 3))
+(define y (amb 4 5 6))
+(require (= (+ x y) 7))
+(list x y)

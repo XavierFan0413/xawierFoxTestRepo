@@ -1,0 +1,6 @@
+#lang sicp
+
+(define x 5)
+(set! x 10)
+
+x
